@@ -1,9 +1,14 @@
 import Image from "next/image";
 import { volumes } from "../../lib/data";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function Towers() {
-  const book = volumes.find((volume) => volume.slug === "the-two-towers");
+export default function DetailPage() {
+  const router = useRouter();
+  console.log("Query: ", router);
+  const { slug } = router.query;
+
+  const book = volumes.find((volume) => volume.slug === slug);
   return (
     <>
       <Link href="/volumes">← All Volumes</Link>
@@ -22,8 +27,7 @@ export default function Towers() {
         height="230"
         alt={"Book Cover:" + book.title}
       />
-      <Link href="/volumes/the-fellowship-of-the-ring">← prev volume </Link>
-      <Link href="/volumes/the-return-of-the-king">next volume →</Link>
+      <Link href="/volumes/the-two-towers">next volume →</Link>
     </>
   );
 }
