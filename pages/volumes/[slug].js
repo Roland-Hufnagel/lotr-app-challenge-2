@@ -3,7 +3,7 @@ import { volumes } from "../../lib/data";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function DetailPage() {
+export default function VolumeDetail() {
   const router = useRouter();
   const { slug } = router.query;
 
