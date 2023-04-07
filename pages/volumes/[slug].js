@@ -5,10 +5,10 @@ import { useRouter } from "next/router";
 
 export default function DetailPage() {
   const router = useRouter();
-  console.log("Query: ", router);
   const { slug } = router.query;
 
   const book = volumes.find((volume) => volume.slug === slug);
+  const currentIndex = volumes.indexOf(book);
   return (
     <>
       <Link href="/volumes">← All Volumes</Link>
@@ -27,7 +27,9 @@ export default function DetailPage() {
         height="230"
         alt={"Book Cover:" + book.title}
       />
-      <Link href="/volumes/the-two-towers">next volume →</Link>
+      {currentIndex > 0 && <Link href={volumes[currentIndex - 1].slug}>← previous volume </Link>}
+      {currentIndex < volumes.length-1 && <Link href={volumes[currentIndex + 1].slug}> next volume →</Link>}
+
     </>
   );
 }
